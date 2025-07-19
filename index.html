@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cazenovia Club - Apparel Order Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .product-card {
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .product-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .quantity-input {
+            width: 60px;
+        }
+        .logo-choice {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .logo-choice input[type="radio"] {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .logo-choice .logo-img {
+            border: 2px solid transparent;
+            border-radius: 0.375rem; /* rounded-md */
+            padding: 2px;
+            transition: border-color 0.2s;
+            background-color: #f9fafb; /* bg-gray-50 */
+        }
+        .logo-choice input[type="radio"]:checked + .logo-img {
+            border-color: #4f46e5; /* indigo-600 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <form action="https://formspree.io/f/YOUR_EMAIL_HERE" method="POST">
+        <div class="container mx-auto p-4 sm:p-8">
+            <header class="text-center mb-10">
+                <h1 class="text-4xl font-bold text-gray-800">Cazenovia Club Apparel</h1>
+                <p class="text-gray-600 mt-2">2025 Order Form</p>
+            </header>
+
+            <!-- Customer Information -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 border-b pb-4 mb-6">Your Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="cell" class="block text-sm font-medium text-gray-700">Cell #</label>
+                        <input type="tel" id="cell" name="cell" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Product Grid -->
+            <div id="product-grid">
+
+                <!-- Apparel Sections -->
+                <div id="apparel-sections">
+                    <!-- Women's Apparel -->
+                    <section id="womens-apparel" class="mb-12">
+                        <h2 class="text-3xl font-bold text-gray-800 border-b pb-4 mb-8">Women's Apparel</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Product Cards will be injected here by JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Men's Apparel -->
+                    <section id="mens-apparel" class="mb-12">
+                        <h2 class="text-3xl font-bold text-gray-800 border-b pb-4 mb-8">Men's Apparel</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Product Cards will be injected here by JavaScript -->
+                        </div>
+                    </section>
+                    
+                    <!-- Youth Apparel -->
+                    <section id="youth-apparel" class="mb-12">
+                        <h2 class="text-3xl font-bold text-gray-800 border-b pb-4 mb-8">Youth Apparel</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Product Cards will be injected here by JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Headwear -->
+                    <section id="headwear" class="mb-12">
+                        <h2 class="text-3xl font-bold text-gray-800 border-b pb-4 mb-8">Headwear</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Product Cards will be injected here by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Order Summary & Submission -->
+            <footer class="bg-white p-6 rounded-lg shadow-md mt-8 sticky bottom-0">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-left mb-4 md:mb-0">
+                        <p class="text-sm text-gray-600">Note: This form is for placing orders only. Payment will be coordinated separately by the club.</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl sm:text-3xl font-bold text-gray-800">
+                            <span>Subtotal: </span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <input type="submit" value="Place Order" class="w-full md:w-auto mt-4 bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors cursor-pointer">
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </form>
+
+    <script>
+        // --- DATA ---
+        const logoData = {
+            standard: [
+                { name: 'The Cazenovia Club', imageUrl: 'https://storage.googleapis.com/gemini-prod-us-central1-cbf2/uploaded/shirtsLogo1.jpg-37006622-938d-423f-9c8c-3b8c0b3a1e71' },
+                { name: 'Rackets Logo', imageUrl: 'https://storage.googleapis.com/gemini-prod-us-central1-cbf2/uploaded/RacketLogo.jpg-20fa8c08-6e57-49e0-a5b1-a8485be94c57' },
+            ],
+            headwear: [
+                { name: 'Cazenovia Tennis Club', imageUrl: 'https://storage.googleapis.com/gemini-prod-us-central1-cbf2/uploaded/hatlogo.jpg-2366466f-8e47-47ca-aaf4-98a381a40573' },
+                { name: 'The Cazenovia Club', imageUrl: 'https://storage.googleapis.com/gemini-prod-us-central1-cbf2/uploaded/shirtsLogo1.jpg-37006622-938d-423f-9c8c-3b8c0b3a1e71' }
+            ]
+        };
+
+        const products = {
+            womens: [
+                { id: 'CR3317', name: 'Womens Axis Soft Shell Jacket', imageUrl: 'https://i.imgur.com/8i2a2N5.png', logos: logoData.standard, sizes: { 'XS': 64, 'S': 64, 'M': 64, 'L': 64, 'XL': 64, 'XXL': 67, 'XXXL': 68, 'XXXXL': 68 } },
+                { id: 'L709', name: 'Port Authority Ladies Puffy Vest', imageUrl: 'https://i.imgur.com/k2b2gJt.png', logos: logoData.standard, sizes: { 'XS': 45, 'S': 45, 'M': 45, 'L': 45, 'XL': 45, 'XXL': 48, 'XXXL': 49, 'XXXXL': 49 } },
+                { id: 'LST400LS', name: 'Sport-Tek Ladies PosiCharge Long Sleeve Tee', imageUrl: 'https://i.imgur.com/08S2d6j.png', logos: logoData.standard, sizes: { 'XS': 21, 'S': 21, 'M': 21, 'L': 21, 'XL': 21, 'XXL': 24, 'XXXL': 25, 'XXXXL': 25 } },
+                { id: 'ST357-W', name: 'Sport-Tek PosiCharge Competitor 1/4 Zip Pullover', imageUrl: 'https://i.imgur.com/dO1yV8S.png', logos: logoData.standard, sizes: { 'XS': 21, 'S': 21, 'M': 21, 'L': 21, 'XL': 21, 'XXL': 24, 'XXXL': 25, 'XXXXL': 25 } },
+                { id: 'L658', name: 'Port Authority Ladies SuperPro Oxford Shirt', imageUrl: 'https://i.imgur.com/gY3Bv9A.png', logos: logoData.standard, sizes: { 'XS': 36, 'S': 36, 'M': 36, 'L': 36, 'XL': 36, 'XXL': 39, 'XXXL': 40, 'XXXXL': 40 } },
+                { id: 'LK8000', name: 'Port Authority Ladies EZCotton Polo', imageUrl: 'https://i.imgur.com/2Y4aY8W.png', logos: logoData.standard, sizes: { 'XS': 26, 'S': 26, 'M': 26, 'L': 26, 'XL': 26, 'XXL': 29, 'XXXL': 30, 'XXXXL': 30 } },
+            ],
+            mens: [
+                { id: 'K8000', name: 'Port Authority EZCotton Polo', imageUrl: 'https://i.imgur.com/PZ7sA7V.png', logos: logoData.standard, sizes: { 'XS': 26, 'S': 26, 'M': 26, 'L': 26, 'XL': 26, 'XXL': 29, 'XXXL': 30, 'XXXXL': 30 } },
+                { id: 'K528', name: 'Port Authority Performance Fine Jacquard Polo', imageUrl: 'https://i.imgur.com/5J3e8Qp.png', logos: logoData.standard, sizes: { 'XS': 25, 'S': 25, 'M': 25, 'L': 25, 'XL': 25, 'XXL': 28, 'XXXL': 29, 'XXXXL': 29 } },
+                { id: 'ST357-M', name: 'Sport-Tek PosiCharge Competitor 1/4 Zip Pullover', imageUrl: 'https://i.imgur.com/dO1yV8S.png', logos: logoData.standard, sizes: { 'XS': 21, 'S': 21, 'M': 21, 'L': 21, 'XL': 21, 'XXL': 24, 'XXXL': 25, 'XXXXL': 25 } },
+                { id: 'S658', name: 'Port Authority SuperPro Oxford Shirt', imageUrl: 'https://i.imgur.com/gY3Bv9A.png', logos: logoData.standard, sizes: { 'XS': 36, 'S': 36, 'M': 36, 'L': 36, 'XL': 36, 'XXL': 39, 'XXXL': 40, 'XXXXL': 40 } },
+            ],
+            youth: [
+                { id: 'KP55Y', name: 'Port & Company Youth Core Blend Jersey Knit Polo', imageUrl: 'https://i.imgur.com/xG5a4Qk.png', logos: logoData.standard, sizes: { 'Youth XS': 16, 'Youth S': 16, 'Youth M': 16, 'Youth L': 16, 'Youth XL': 16 } },
+                { id: 'YOUTH-ZIP', name: 'Augusta Sportswear YOUTH Attain Wicking 1/4 Zip Pullover', imageUrl: 'https://i.imgur.com/c5B1b2j.png', logos: logoData.standard, sizes: { 'Youth XS': 17, 'Youth S': 17, 'Youth M': 17, 'Youth L': 17, 'Youth XL': 17 } },
+            ],
+            headwear: [
+                { id: 'C821', name: 'Port Authority Perforated Cap', price: 14.00, imageUrl: 'https://i.imgur.com/QZ6t8Yw.png', logos: logoData.headwear }
+            ]
+        };
+
+        // --- DOM ELEMENTS ---
+        const subtotalEl = document.getElementById('subtotal');
+
+        // --- FUNCTIONS ---
+
+        function createLogoChoices(product) {
+            if (!product.logos) return '';
+            const name = `product_${product.id}_logo`;
+            return product.logos.map((logo, index) => `
+                <label class="logo-choice mr-4 mb-2">
+                    <input type="radio" name="${name}" value="${logo.name}" ${index === 0 ? 'checked' : ''}>
+                    <img src="${logo.imageUrl}" alt="${logo.name}" class="logo-img h-10 w-10 object-contain mr-2">
+                    <span class="text-sm text-gray-700">${logo.name}</span>
+                </label>
+            `).join('');
+        }
+        
+        function createProductCard(product) {
+            const sizeRows = Object.entries(product.sizes).map(([size, price]) => {
+                const name = `product_${product.id}_${size.replace(/\s/g, '')}_qty`;
+                return `
+                <tr class="border-b border-gray-200">
+                    <td class="py-2 px-4 text-sm text-gray-700 font-medium">${size}</td>
+                    <td class="py-2 px-4 text-sm text-gray-600">$${price.toFixed(2)}</td>
+                    <td class="py-2 px-4 text-right">
+                        <input type="number" name="${name}" min="0" value="0" class="quantity-input rounded-md border-gray-300 text-center" data-price="${price}" oninput="updateSubtotal()">
+                    </td>
+                </tr>
+            `}).join('');
+
+            const logoOptions = createLogoChoices(product);
+
+            return `
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                    <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E2E8F0/4A5568?text=Image+Not+Found';">
+                    <div class="p-4 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-gray-800">${product.name}</h3>
+                        <p class="text-xs text-gray-500 mb-4">ID: ${product.id}</p>
+                        <div class="mb-4">
+                            <label class="text-sm font-medium text-gray-700 mb-2 block">Logo:</label>
+                            <div class="flex flex-wrap">${logoOptions}</div>
+                        </div>
+                        <div class="flex-grow">
+                            <table class="w-full text-left">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="py-2 px-4 text-xs font-semibold text-gray-600 uppercase">Size</th>
+                                        <th class="py-2 px-4 text-xs font-semibold text-gray-600 uppercase">Price</th>
+                                        <th class="py-2 px-4 text-xs font-semibold text-gray-600 uppercase text-right">Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${sizeRows}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createHeadwearCard(product) {
+            const logoOptions = createLogoChoices(product);
+            const name = `product_${product.id}_qty`;
+            return `
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                    <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E2E8F0/4A5568?text=Image+Not+Found';">
+                    <div class="p-4 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-gray-800">${product.name}</h3>
+                        <p class="text-xs text-gray-500 mb-4">ID: ${product.id}</p>
+                        <div class="mb-4">
+                            <label class="text-sm font-medium text-gray-700 mb-2 block">Logo:</label>
+                            <div class="flex flex-wrap">${logoOptions}</div>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4">
+                             <p class="text-lg font-semibold text-gray-800">$${product.price.toFixed(2)}</p>
+                             <div class="flex items-center">
+                                <label class="mr-2 text-sm font-medium text-gray-700">Qty:</label>
+                                <input type="number" name="${name}" min="0" value="0" class="quantity-input rounded-md border-gray-300 text-center" data-price="${product.price}" oninput="updateSubtotal()">
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateSubtotal() {
+            let total = 0;
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            quantityInputs.forEach(input => {
+                const quantity = parseInt(input.value) || 0;
+                const price = parseFloat(input.dataset.price);
+                if (quantity > 0) {
+                    total += quantity * price;
+                }
+            });
+            subtotalEl.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function renderProducts() {
+            const womensContainer = document.querySelector('#womens-apparel .grid');
+            const mensContainer = document.querySelector('#mens-apparel .grid');
+            const youthContainer = document.querySelector('#youth-apparel .grid');
+            const headwearContainer = document.querySelector('#headwear .grid');
+
+            womensContainer.innerHTML = products.womens.map(createProductCard).join('');
+            mensContainer.innerHTML = products.mens.map(createProductCard).join('');
+            youthContainer.innerHTML = products.youth.map(createProductCard).join('');
+            headwearContainer.innerHTML = products.headwear.map(createHeadwearCard).join('');
+        }
+        
+        document.addEventListener('DOMContentLoaded', renderProducts);
+
+    </script>
+</body>
+</html>
+
